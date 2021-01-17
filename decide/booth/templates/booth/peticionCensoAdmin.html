@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 {% block head %}
 <div class="text-center">
-<div class="container-fluid bg-primary text-white py-3">
+  <div class="container-fluid bg-primary text-white py-3">
     <div class="container">
-        <h1 class="display-3">
-            <b class="fuente">Decide-Cabina</b>
-        </h1>
+      <h1 class="display-3">
+        <b class="fuente">Decide-Cabina</b>
+      </h1>
     </div>
-</div>
-<p class="lead bg-info text-white">Panel de administrador para peticiones</p>
+  </div>
+  <p class="lead bg-info text-white">Panel de administrador para peticiones</p>
 </div>
 {% endblock %}
 
@@ -20,34 +20,43 @@
          href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
     <link type="text/css" rel="stylesheet" href="{% static 'booth/style.css' %}" />
 {% endblock %}
-{% if not listaVacia %}
-<h2>Estas son las peticiones para ser censado:</h2>
-<table class="listaPeticiones">
-    <thead>
-    <tr>
+<body style="background-color:#b4d1e0;">
+  {% if user.is_authenticated %}
+  <div class="pr-3">
+    <span>
+      <a class="hello-msg botonLogout btn float-right" href="{% url 'logout' %}">Logout</a>
+    </span>
+  </div>
+  {% endif %}
+  <div class="pl-3">
+    {% if not listaVacia %}
+      <h2>Estas son las peticiones para ser censado:</h2>
+      <table class="table table-striped table-bordered anchoTabla listaPeticiones">
+        <thead class="thead-light">
+        <tr>
   
-      <th scope="col">Id peticion</th>
-      <th scope="col">Id del usuario</th>
-      <th scope="col">Nombre de la votacion</th>
-      <th scope="col">¿Borrar?</th>
-  
+          <th scope="col">Id peticion</th>
+          <th scope="col">Id del usuario</th>
+          <th scope="col">Nombre de la votacion</th>
+          <th scope="col">¿Borrar?</th>
 
+        </tr>
+        </thead>
+        <tbody>
+          {% for p in allPeticiones %}
+            <tr>
   
-    </tr>
-    </thead>
-    <tbody>
-        {% for p in allPeticiones %}
-    <tr>
-  
-      <td>{{p.id}}</a></td>
-      <td>{{p.user_id}}</td>
-      <td>{{p.desc}}</td>
-      <td><a class="btn btn-sm btn-danger" href="{% url 'deletePeticion' p.id %}">Borrar</a></td>
-    </tr>
-    {% endfor %}
-</tbody>
-  </table>
-  {%endif%}
-  {% if listaVacia %}
-  <h2>Actualmente no hay peticiones para ser censado</h2>
-  {%endif%}
+              <td>{{p.id}}</a></td>
+              <td>{{p.user_id}}</td>
+              <td>{{p.desc}}</td>
+              <td><a class="text-danger" href="{% url 'deletePeticion' p.id %}">Borrar</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {%endif%}
+    {% if listaVacia %}
+      <h2>Actualmente no hay peticiones para ser censado.</h2>
+    {%endif%}
+  </div>
+</body>
