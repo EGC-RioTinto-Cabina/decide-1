@@ -21,20 +21,20 @@
     <link type="text/css" rel="stylesheet" href="{% static 'booth/style.css' %}" />
 {% endblock %}
 <br>
-<div class="row">
-	<div class="col-md-6">
-		<div class="card card-body">
-
-
-			<p>¿Estás seguro de que quieres borrar esta petición?</p>
-
-			<form action="{% url 'deletePeticion' item.id  %}" method="POST">
+<body style="background-color:#b4d1e0;">
+    <div class="pl-3 row">
+	    <div class="col-md-6">
+		    <div class="card card-body">
+			    <p>¿Estás seguro de que quieres borrar esta petición?</p>
+			    <form action="{% url 'deletePeticion' item.id  %}" method="POST">
 				
-				{% csrf_token %}
-				<a class="btn btn-warning" href="{% url 'peticionCensoAdmin' %}">Cancel</a>
+				    {% csrf_token %}
+				    <a class="btn btn-warning" href="{% url 'peticionCensoAdmin' %}">Cancel</a>
 
-				<input class="btn btn-danger" type="submit" name="Confirm">
-			</form>
-		</div>
-	</div>
-</div>
+                    <input class="btn btn-danger" type="submit" name="Confirm">
+                
+			    </form>
+		    </div>
+	    </div>
+    </div>
+</body>
