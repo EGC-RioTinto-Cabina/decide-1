@@ -17,6 +17,10 @@
     font-family: Arial, Helvetica, sans-serif; 
 }
 
+.anchoTabla{ 
+  width: 60%;
+}
+
 .wrapper {
     display: flex;
     align-items: center;
@@ -163,8 +167,4 @@
 
 .margen {
     margin-top: 80px !important;
-}
-
-.anchoTabla { 
-  width: 60%;
 }

@@ -23,6 +23,13 @@
 
 {% block content %}
 <body style="background-color:#b4d1e0;">
+  {% if user.is_authenticated %}
+  <div class="pr-3">
+    <span>
+      <a class="hello-msg botonLogout btn float-right" href="{% url 'logout' %}">Logout</a>
+    </span>
+  </div>
+  {% endif %}
   <div class="wrapper margen">
     <div id="contenido">
       <div class="container h-100">
